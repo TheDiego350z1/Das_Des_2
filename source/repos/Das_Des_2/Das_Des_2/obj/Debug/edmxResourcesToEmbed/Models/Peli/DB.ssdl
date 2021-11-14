@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CinePlusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="idGender" />
+    </Key>
+    <Property Name="idGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nameGender" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="idMovie" />
+    </Key>
+    <Property Name="idMovie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nameMovie" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="descriptionMovie" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="genderMovie" Type="int" Nullable="false" />
+    <Property Name="directorMovie" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="imgMovie" Type="text" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nameUser" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="mailUser" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="passwordUser" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vote">
+    <Key>
+      <PropertyRef Name="idVoto" />
+    </Key>
+    <Property Name="idVoto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="valueVoto" Type="int" Nullable="false" />
+    <Property Name="idMovie" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Movie__genderMov__48CFD27E">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+    <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="idGender" />
+      </Principal>
+      <Dependent Role="Movie">
+        <PropertyRef Name="genderMovie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Vote__idMovie__49C3F6B7">
+    <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+    <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie">
+        <PropertyRef Name="idMovie" />
+      </Principal>
+      <Dependent Role="Vote">
+        <PropertyRef Name="idMovie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CinePlusModelStoreContainer">
+    <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vote" EntityType="Self.Vote" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Movie__genderMov__48CFD27E" Association="Self.FK__Movie__genderMov__48CFD27E">
+      <End Role="Gender" EntitySet="Gender" />
+      <End Role="Movie" EntitySet="Movie" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Vote__idMovie__49C3F6B7" Association="Self.FK__Vote__idMovie__49C3F6B7">
+      <End Role="Movie" EntitySet="Movie" />
+      <End Role="Vote" EntitySet="Vote" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

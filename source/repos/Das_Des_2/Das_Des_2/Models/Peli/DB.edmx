@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CinePlusModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameGender" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="idMovie" />
+          </Key>
+          <Property Name="idMovie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameMovie" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="descriptionMovie" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="genderMovie" Type="int" Nullable="false" />
+          <Property Name="directorMovie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="imgMovie" Type="text" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nameUser" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mailUser" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="passwordUser" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vote">
+          <Key>
+            <PropertyRef Name="idVoto" />
+          </Key>
+          <Property Name="idVoto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="valueVoto" Type="int" Nullable="false" />
+          <Property Name="idMovie" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Movie__genderMov__48CFD27E">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="genderMovie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vote__idMovie__49C3F6B7">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="idMovie" />
+            </Principal>
+            <Dependent Role="Vote">
+              <PropertyRef Name="idMovie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CinePlusModelStoreContainer">
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vote" EntityType="Self.Vote" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Movie__genderMov__48CFD27E" Association="Self.FK__Movie__genderMov__48CFD27E">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Movie" EntitySet="Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vote__idMovie__49C3F6B7" Association="Self.FK__Vote__idMovie__49C3F6B7">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Vote" EntitySet="Vote" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CinePlusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="idUser" />
+          </Key>
+          <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mailUser" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="passwordUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CinePlusEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Gender" EntityType="CinePlusModel.Gender" />
+          <EntitySet Name="Movie" EntityType="CinePlusModel.Movie" />
+          <EntitySet Name="Vote" EntityType="CinePlusModel.Vote" />
+          <AssociationSet Name="FK__Movie__genderMov__48CFD27E" Association="CinePlusModel.FK__Movie__genderMov__48CFD27E">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Movie" EntitySet="Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vote__idMovie__49C3F6B7" Association="CinePlusModel.FK__Vote__idMovie__49C3F6B7">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Vote" EntitySet="Vote" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameGender" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Movie" Relationship="CinePlusModel.FK__Movie__genderMov__48CFD27E" FromRole="Gender" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="idMovie" />
+          </Key>
+          <Property Name="idMovie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nameMovie" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="descriptionMovie" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="genderMovie" Type="Int32" Nullable="false" />
+          <Property Name="directorMovie" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="imgMovie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Gender" Relationship="CinePlusModel.FK__Movie__genderMov__48CFD27E" FromRole="Movie" ToRole="Gender" />
+          <NavigationProperty Name="Vote" Relationship="CinePlusModel.FK__Vote__idMovie__49C3F6B7" FromRole="Movie" ToRole="Vote" />
+        </EntityType>
+        <EntityType Name="Vote">
+          <Key>
+            <PropertyRef Name="idVoto" />
+          </Key>
+          <Property Name="idVoto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="valueVoto" Type="Int32" Nullable="false" />
+          <Property Name="idMovie" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Movie" Relationship="CinePlusModel.FK__Vote__idMovie__49C3F6B7" FromRole="Vote" ToRole="Movie" />
+        </EntityType>
+        <Association Name="FK__Movie__genderMov__48CFD27E">
+          <End Type="CinePlusModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="CinePlusModel.Movie" Role="Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="genderMovie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vote__idMovie__49C3F6B7">
+          <End Type="CinePlusModel.Movie" Role="Movie" Multiplicity="1" />
+          <End Type="CinePlusModel.Vote" Role="Vote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="idMovie" />
+            </Principal>
+            <Dependent Role="Vote">
+              <PropertyRef Name="idMovie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CinePlusModelStoreContainer" CdmEntityContainer="CinePlusEntities">
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="CinePlusModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="nameUser" ColumnName="nameUser" />
+                <ScalarProperty Name="mailUser" ColumnName="mailUser" />
+                <ScalarProperty Name="passwordUser" ColumnName="passwordUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="CinePlusModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="nameGender" ColumnName="nameGender" />
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movie">
+            <EntityTypeMapping TypeName="CinePlusModel.Movie">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="imgMovie" ColumnName="imgMovie" />
+                <ScalarProperty Name="directorMovie" ColumnName="directorMovie" />
+                <ScalarProperty Name="genderMovie" ColumnName="genderMovie" />
+                <ScalarProperty Name="descriptionMovie" ColumnName="descriptionMovie" />
+                <ScalarProperty Name="nameMovie" ColumnName="nameMovie" />
+                <ScalarProperty Name="idMovie" ColumnName="idMovie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vote">
+            <EntityTypeMapping TypeName="CinePlusModel.Vote">
+              <MappingFragment StoreEntitySet="Vote">
+                <ScalarProperty Name="idMovie" ColumnName="idMovie" />
+                <ScalarProperty Name="valueVoto" ColumnName="valueVoto" />
+                <ScalarProperty Name="idVoto" ColumnName="idVoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

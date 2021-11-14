@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CinePlusModelStoreContainer" CdmEntityContainer="CinePlusEntities">
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="CinePlusModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="nameUser" ColumnName="nameUser" />
+          <ScalarProperty Name="mailUser" ColumnName="mailUser" />
+          <ScalarProperty Name="passwordUser" ColumnName="passwordUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gender">
+      <EntityTypeMapping TypeName="CinePlusModel.Gender">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="nameGender" ColumnName="nameGender" />
+          <ScalarProperty Name="idGender" ColumnName="idGender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movie">
+      <EntityTypeMapping TypeName="CinePlusModel.Movie">
+        <MappingFragment StoreEntitySet="Movie">
+          <ScalarProperty Name="imgMovie" ColumnName="imgMovie" />
+          <ScalarProperty Name="directorMovie" ColumnName="directorMovie" />
+          <ScalarProperty Name="genderMovie" ColumnName="genderMovie" />
+          <ScalarProperty Name="descriptionMovie" ColumnName="descriptionMovie" />
+          <ScalarProperty Name="nameMovie" ColumnName="nameMovie" />
+          <ScalarProperty Name="idMovie" ColumnName="idMovie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vote">
+      <EntityTypeMapping TypeName="CinePlusModel.Vote">
+        <MappingFragment StoreEntitySet="Vote">
+          <ScalarProperty Name="idMovie" ColumnName="idMovie" />
+          <ScalarProperty Name="valueVoto" ColumnName="valueVoto" />
+          <ScalarProperty Name="idVoto" ColumnName="idVoto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

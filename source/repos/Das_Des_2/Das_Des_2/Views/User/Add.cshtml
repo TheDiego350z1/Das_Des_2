@@ -1,0 +1,41 @@
+﻿@model Das_Des_2.Models.UserViewModel.UserViewModel
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Add", "User", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationMessage("error", new { @class = "text-danger" })
+
+            @Html.LabelFor(d => d.NameUser)
+            @Html.TextBoxFor(d => d.NameUser, new { @class = "form-control form-control-lg" })
+            @Html.ValidationMessage("NameUser", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(d => d.MailUser)
+            @Html.TextBoxFor(d => d.MailUser, new { @class = "form-control form-control-lg" })
+            @Html.ValidationMessage("MailUser", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(d => d.PasswordUser)
+            @Html.PasswordFor(d => d.PasswordUser, new { @class = "form-control form-control-lg" })
+            @Html.ValidationMessage("PasswordUser", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(d => d.ConfirmPasswordUser)
+            @Html.PasswordFor(d => d.ConfirmPasswordUser, new { @class = "form-control form-control-lg" })
+            @Html.ValidationMessage("ConfirmPasswordUser", new { @class = "text-danger" })
+            <br />
+
+            <div>
+                <input type="submit" class="btn btn-success  btn-lg" value="Guardar" />
+            </div>
+        }
+    </div>
+</div>
