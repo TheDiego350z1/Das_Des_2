@@ -1,1 +1,15 @@
-﻿
+﻿.card-border {
+    border: solid 30px rgb(253, 253, 253);
+    border-radius: 30px;
+    overflow: hidden;
+    transition: all ease-out 0.2s;
+}
+.card-border:hover {
+        transform: scale(1.05);
+}
+
+#itemmenu {
+    margin-top: 30px;
+    z-index: 20;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Das_Des_2.Models.PeliculaViewModel;
 using Das_Des_2.Models.Peli;
+using Das_Des_2.Models.PeliculaTableViewModel;
 
 namespace Das_Des_2.Controllers
 {
@@ -44,6 +45,7 @@ namespace Das_Des_2.Controllers
         {
             var RutaSitio = Server.MapPath("~/");
             var NameFile = System.IO.Path.Combine(RutaSitio + "/upluad/" + model.File.FileName);
+            var FileName = System.IO.Path.Combine("/upluad/" + model.File.FileName);
 
             if (!ModelState.IsValid)
             {
@@ -61,7 +63,7 @@ namespace Das_Des_2.Controllers
                 oMmovie.descriptionMovie = model.DescriptionMovie;
                 oMmovie.genderMovie = int.Parse(GenderList);
                 oMmovie.directorMovie = model.DirectorMovie;
-                oMmovie.imgMovie = NameFile.ToString();
+                oMmovie.imgMovie = FileName.ToString();
 
                 db.Movie.Add(oMmovie);
                 db.SaveChanges();
@@ -71,10 +73,27 @@ namespace Das_Des_2.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult ShowPelicula()
         {
-            return View();
+            List<PeliculaTableViewModel> lst = new List<PeliculaTableViewModel>();
+            List<SelectListItem> Gender = new List<SelectListItem>();
+            using (var db = new CinePlusEntities())
+            {
+                lst = (from d in db.Movie
+                       join b in db.Gender
+                       on d.genderMovie equals b.idGender
+                       select new PeliculaTableViewModel
+                       {
+                           IdMovie = d.idMovie,
+                           NameMovie = d.nameMovie,
+                           DescriptionMovie = d.descriptionMovie,
+                           DirectorMovie = d.directorMovie,
+                           ImgMovie = d.imgMovie,
+                           GeneroMovie = b.nameGender
+                       }).ToList(); 
+            }
+            return View(lst);
         }
     }
 }

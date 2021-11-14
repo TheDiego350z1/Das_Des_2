@@ -35,7 +35,7 @@ namespace Das_Des_2.Controllers
 
             return View(lst);
         }
-
+        //Crear nuevo usuario
         [HttpGet]
         public ActionResult Add()
         {
@@ -68,7 +68,7 @@ namespace Das_Des_2.Controllers
             return Redirect(Url.Content("~/User/"));
 
         }
-
+        //Editar Usuario
         public ActionResult Edit(int Id)
         {
             EditUserViewModel model = new EditUserViewModel();
@@ -111,7 +111,7 @@ namespace Das_Des_2.Controllers
             }
             return Redirect(Url.Content("~/User/ShowUser"));
         }
-
+        //Edilinar Usuario
         [HttpPost]
         public ActionResult Delete(int Id)
         {

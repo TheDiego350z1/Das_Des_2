@@ -134,6 +134,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GenderViewModel\GenderViewModel.cs" />
+    <Compile Include="Models\PeliculaTableViewModel\PeliculaTableViewModel.cs" />
     <Compile Include="Models\PeliculaViewModel\PeliculaViewModel.cs" />
     <Compile Include="Models\Peli\DB.Context.cs">
       <AutoGen>True</AutoGen>

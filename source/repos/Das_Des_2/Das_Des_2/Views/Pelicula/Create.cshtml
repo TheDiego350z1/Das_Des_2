@@ -30,7 +30,7 @@
             <br />
             <div class="form-group">
                 @Html.LabelFor(d => d.File)
-                @Html.TextBoxFor(d => d.File, new { type = "file", accept = ".png", @class = "form-control form-control-lg" })
+                @Html.TextBoxFor(d => d.File, new { type = "file", accept = "image/*", @class = "form-control form-control-lg" })
                 @Html.ValidationMessage("DescriptionMovie", new { @class = "text-danger" })
             </div>
             <br />
