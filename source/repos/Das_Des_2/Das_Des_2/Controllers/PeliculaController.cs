@@ -73,6 +73,13 @@ namespace Das_Des_2.Controllers
         public ActionResult ShowPelicula(int? pageSize, int? page)
         {
             List<PeliculaTableViewModel> lst = new List<PeliculaTableViewModel>();
+            List<SelectListItem> VoteList = new List<SelectListItem>();
+            VoteList.Add(new SelectListItem() { Text = "1", Value = "1" });
+            VoteList.Add(new SelectListItem() { Text = "2", Value = "2" });
+            VoteList.Add(new SelectListItem() { Text = "3", Value = "3" });
+            VoteList.Add(new SelectListItem() { Text = "4", Value = "4" });
+            VoteList.Add(new SelectListItem() { Text = "5", Value = "5" });
+
             using (var db = new CinePlusEntities())
             {
                 lst = (from d in db.Movie
@@ -92,9 +99,27 @@ namespace Das_Des_2.Controllers
             pageSize = (pageSize ?? 5);
             page = (page ?? 1);
 
+            ViewBag.Vote = VoteList;
             ViewBag.PageSize = pageSize;
             return View(lst.ToPagedList(page.Value, pageSize.Value));
         }
+
+        [HttpPost]
+        public ActionResult AddVote(string Vote, string Id)
+        {
+            using (var db = new CinePlusEntities())
+            {
+                Vote oVote = new Vote();
+                oVote.idVoto = 1;
+                oVote.valueVoto = int.Parse(Vote);
+                oVote.idMovie = int.Parse(Id);
+
+                db.Vote.Add(oVote);
+                db.SaveChanges();
+            }
+            return RedirectToAction("ShowPelicula");
+        }
+
         [HttpGet]
         public ActionResult ShowTablePelicula ()
         {

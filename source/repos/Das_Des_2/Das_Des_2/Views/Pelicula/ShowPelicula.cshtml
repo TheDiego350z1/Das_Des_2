@@ -23,6 +23,22 @@
                                     <p>@oModel.DescriptionMovie</p>
                                     <h5>@oModel.DirectorMovie</h5>
                                     <h5>@oModel.GeneroMovie</h5>
+                                    <div>
+                                        @using (Html.BeginForm("AddVote", "Pelicula", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+
+                                            @Html.Hidden("Id", oModel.IdMovie.ToString())
+
+                                            @Html.Label("Valorar Película")
+                                            <br />
+                                            @Html.DropDownList("Vote", null, new { @class = "dropdown" })
+                                            <br />
+                                            <div>
+                                                <input type="submit" class="btn btn-success" value="Votar" />
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
