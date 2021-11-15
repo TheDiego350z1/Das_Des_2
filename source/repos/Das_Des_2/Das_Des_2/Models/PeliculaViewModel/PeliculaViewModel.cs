@@ -24,4 +24,23 @@ namespace Das_Des_2.Models.PeliculaViewModel
         public HttpPostedFileBase File {get; set; }
         public List<SelectListItem> GenderMovie { get; set; }
     }
+    public class EditPeliculaViewModel
+    {
+        public int IdMovie { get; set; }
+        
+        [Display(Name = "Nombre de Película")]
+        public string NameMovie { get; set; }
+        
+        [Display(Name = "Descipción de Película")]
+        public string DescriptionMovie { get; set; }
+
+        [Display(Name = "Director de Película")]
+        public string DirectorMovie { get; set; }
+        
+        [Display(Name = "Imagen de Película")]
+        public HttpPostedFileBase File { get; set; }
+        public List<SelectListItem> GenderMovie { get; set; }
+
+        public string ImageUrl { get; set; }
+    }
 }

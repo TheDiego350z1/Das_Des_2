@@ -1,0 +1,49 @@
+﻿@model List<Das_Des_2.Models.PeliculaTableViewModel.PeliculaTableViewModel>
+@{
+    ViewBag.Title = "ShowTablePelicula";
+}
+
+<h2>ShowTablePelicula</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Genero</th>
+            <th scope="col">Director</th>
+            <th scope="col">Imagen</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var oModel in Model)
+        {
+            <tr>
+                <th scope="row">@oModel.NameMovie</th>
+                <td>@oModel.DescriptionMovie</td>
+                <td>@oModel.GeneroMovie</td>
+                <td>@oModel.DirectorMovie</td>
+                <th><img src="@oModel.ImgMovie" width="140px" height="320px" class="card-img-top" alt="@oModel.NameMovie"></th>
+                <td><input onclick="document.location.href='@Url.Content("~/Pelicula/Edit/"+oModel.IdMovie)'" type="button" class="btn btn-primary" value="Editar" />  </td>
+                <td><input onclick="funcDelete(@oModel.IdMovie)" type="button" class="btn btn-danger" value="Eliminar" /></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function funcDelete(id) {
+        if (confirm("Desea eliminar la Pelicula")) {
+            url = "@Url.Content("~/Pelicula/Delete/")" + id;
+            $.post(url, function (data) {
+                if (data == "1") {
+                    document.location.href = "@Url.Content("~/Pelicula/ShowTablePelicula")";
+                } else {
+                    alert("Error al eliminar usuario");
+                }
+            });
+        };
+    };
+</script>

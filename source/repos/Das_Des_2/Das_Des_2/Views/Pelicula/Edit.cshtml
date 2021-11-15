@@ -1,0 +1,48 @@
+﻿@model Das_Des_2.Models.PeliculaViewModel.EditPeliculaViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm("Edit", "Pelicula", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-12">
+            @Html.HiddenFor(d => d.ImageUrl)
+            @Html.HiddenFor(d => d.IdMovie)
+            @Html.ValidationMessage("error", new { @class = "text-danger" })
+            <br />
+            @Html.LabelFor(d => d.NameMovie)
+            @Html.TextBoxFor(d => d.NameMovie, new { @class = "form-control form-control-lg" })
+            @Html.ValidationMessage("NameMovie", new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(d => d.DescriptionMovie)
+            @Html.TextBoxFor(d => d.DescriptionMovie, new { @class = "form-control form-control-lg" })
+            @Html.ValidationMessage("DescriptionMovie", new { @class = "text-danger" })
+            <br />
+            @Html.Label("Genero")
+            @Html.DropDownList("GenderList", null, new { @class = "form-control form-control-lg" })
+            <br />
+
+            @Html.LabelFor(d => d.DirectorMovie)
+            @Html.TextBoxFor(d => d.DirectorMovie, new { @class = "form-control form-control-lg" })
+            @Html.ValidationMessage("DirectorMovie", new { @class = "text-danger" })
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(d => d.File)
+                @Html.TextBoxFor(d => d.File, new { type = "file", accept = "image/*", @class = "form-control form-control-lg" })
+                @Html.ValidationMessage("DescriptionMovie", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div>
+                <input type="button" onclick="document.location.href='@Url.Content("~/Pelicula/ShowTablePelicula")'" class="btn btn-danger btn-lg" value="Cancenar" />
+                <input type="submit" class="btn btn-success  btn-lg" value="Guardar" />
+            </div>
+        </div>
+    </div>
+
+}
