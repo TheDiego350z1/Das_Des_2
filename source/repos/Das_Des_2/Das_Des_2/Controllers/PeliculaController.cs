@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Das_Des_2.Models.PeliculaViewModel;
 using Das_Des_2.Models.Peli;
 using Das_Des_2.Models.PeliculaTableViewModel;
+using PagedList;
 
 namespace Das_Des_2.Controllers
 {
@@ -69,7 +70,7 @@ namespace Das_Des_2.Controllers
         }
 
         [HttpGet]
-        public ActionResult ShowPelicula()
+        public ActionResult ShowPelicula(int? pageSize, int? page)
         {
             List<PeliculaTableViewModel> lst = new List<PeliculaTableViewModel>();
             using (var db = new CinePlusEntities())
@@ -87,7 +88,12 @@ namespace Das_Des_2.Controllers
                            GeneroMovie = b.nameGender
                        }).ToList(); 
             }
-            return View(lst);
+
+            pageSize = (pageSize ?? 5);
+            page = (page ?? 1);
+
+            ViewBag.PageSize = pageSize;
+            return View(lst.ToPagedList(page.Value, pageSize.Value));
         }
         [HttpGet]
         public ActionResult ShowTablePelicula ()

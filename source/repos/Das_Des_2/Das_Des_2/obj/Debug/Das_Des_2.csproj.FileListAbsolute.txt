@@ -73,3 +73,7 @@ C:\Users\diego\source\repos\DAS_Des_2\Das_Des_2\bin\roslyn\System.Buffers.dll
 C:\Users\diego\source\repos\DAS_Des_2\Das_Des_2\bin\roslyn\System.Memory.dll
 C:\Users\diego\source\repos\DAS_Des_2\Das_Des_2\bin\roslyn\System.Numerics.Vectors.dll
 C:\Users\diego\source\repos\DAS_Des_2\Das_Des_2\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\diego\source\repos\DAS_Des_2\Das_Des_2\bin\PagedList.dll
+C:\Users\diego\source\repos\DAS_Des_2\Das_Des_2\bin\PagedList.Mvc.dll
+C:\Users\diego\source\repos\DAS_Des_2\Das_Des_2\bin\PagedList.xml
+C:\Users\diego\source\repos\DAS_Des_2\Das_Des_2\bin\PagedList.Mvc.xml

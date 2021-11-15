@@ -1,4 +1,5 @@
-﻿@model List<Das_Des_2.Models.PeliculaTableViewModel.PeliculaTableViewModel>
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Das_Des_2.Models.PeliculaTableViewModel.PeliculaTableViewModel>
 @{
     ViewBag.Title = "ShowPelicula";
 }
@@ -26,9 +27,13 @@
                             </div>
                         </div>
                     </div>
-
                 }
             </div>
         </div>
     </div>
 </div>
+
+
+<br />
+
+@Html.PagedListPager(Model, page => Url.Action("ShowPelicula", "Pelicula", new { page, PageSize = ViewBag.pageSize }))
